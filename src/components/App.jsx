@@ -17,6 +17,23 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts'); // Отримуємо дані з localStorage.
+    const parsedContacts = JSON.parse(contacts); // Перетворюємо данні з рядка JSON в об"єкт JavaScript.
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts }); // Додаємо контакти в об"єкт "contacts".
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      // Порівнюємо поточні контакти с попереднім об"єктом контактів.
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      // Якщо контакти змінились, зберігаємо їх у localStorage.
+    }
+  }
+
   addContact = data => {
     const { contacts } = this.state;
     const newContact = {
