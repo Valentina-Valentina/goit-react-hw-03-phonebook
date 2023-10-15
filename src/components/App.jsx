@@ -19,7 +19,7 @@ export class App extends Component {
 
   componentDidMount() {
     const contacts = localStorage.getItem('contacts'); // Отримуємо дані з localStorage.
-    const parsedContacts = JSON.parse(contacts); // Перетворюємо данні з рядка JSON в об"єкт JavaScript.
+    const parsedContacts = JSON.parse(contacts); // Перетворюємо дані з рядка JSON в об"єкт JavaScript.
 
     if (parsedContacts) {
       this.setState({ contacts: parsedContacts }); // Додаємо контакти в об"єкт "contacts".
